@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battlekart Stock Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="flag-icon">🏁</div>
+                <h1>Battlekart Stock Management</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="current-user">Gebruiker niet ingelogd</span>
+                    <button id="login-btn" class="login-btn">Inloggen</button>
+                </div>
+                <div class="admin-controls" style="display: none;">
+                    <button id="admin-panel-btn" class="admin-btn">Admin Panel</button>
+                    <button id="logout-btn" class="logout-btn">Uitloggen</button>
+                </div>
+            </div>
+        </div>
+        <div class="header-subtitle">
+            <span>CENTER: Gent 2025 | DATUM: <span id="current-date"></span></span>
+        </div>
+        
+        <!-- User Login Modal -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <h2>Gebruiker Identificatie</h2>
+                <p>Voer je naam in om de stock te kunnen bijwerken:</p>
+                <input type="text" id="user-name" placeholder="Je naam..." maxlength="50">
+                <div class="modal-buttons">
+                    <button id="confirm-login" class="btn-primary">Bevestigen</button>
+                    <button id="cancel-login" class="btn-secondary">Annuleren</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Login Modal -->
+        <div id="admin-login-modal" class="modal">
+            <div class="modal-content">
+                <h2>Admin Login</h2>
+                <p>Voer het admin wachtwoord in:</p>
+                <input type="password" id="admin-password" placeholder="Admin wachtwoord...">
+                <div class="modal-buttons">
+                    <button id="confirm-admin-login" class="btn-primary">Inloggen</button>
+                    <button id="cancel-admin-login" class="btn-secondary">Annuleren</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Category Selection -->
+        <div class="category-section">
+            <h2>Selecteer Categorie</h2>
+            <div class="category-buttons">
+                <button id="category-all" class="category-btn active">Alle Items</button>
+                <button id="category-drinks" class="category-btn">Drank</button>
+                <button id="category-food" class="category-btn">Eten</button>
+            </div>
+        </div>
+
+        <!-- Stock Input Section -->
+        <div class="stock-section">
+            <h2>Stock Inventarisatie</h2>
+            <p class="section-description">Vul de huidige voorraad in per item. Klik op een item om de hoeveelheid bij te werken.</p>
+            
+            <div class="stock-grid" id="stock-grid">
+                <!-- Stock items will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-section">
+            <button id="generate-order-list" class="btn-primary large">Bestellijst Genereren</button>
+            <button id="export-excel" class="btn-secondary large">Export naar Excel</button>
+            <button id="clear-all" class="btn-warning large">Alles Wissen</button>
+        </div>
+
+        <!-- Order List Section -->
+        <div id="order-list-section" class="order-section" style="display: none;">
+            <h2>
+                Bestellijst
+                <div class="order-actions">
+                    <button id="copy-order-list" class="copy-btn">
+                        📋 Kopieer Bestellijst
+                    </button>
+                </div>
+            </h2>
+            <div class="order-list" id="order-list">
+                <!-- Order items will be displayed here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Panel (hidden by default) -->
+    <div id="admin-panel" class="admin-panel" style="display: none;">
+        <div class="admin-header">
+            <h2>Admin Panel</h2>
+            <button id="close-admin" class="close-btn">×</button>
+        </div>
+        
+        <div class="admin-content">
+            <div class="admin-section">
+                <h3>Items Beheer</h3>
+                <div class="add-item-form">
+                    <input type="text" id="new-item-name" placeholder="Item naam...">
+                    <select id="new-item-category">
+                        <option value="drank">Drank</option>
+                        <option value="eten">Eten</option>
+                    </select>
+                    <input type="text" id="new-item-unit" placeholder="Eenheid (bijv. bakken, pakken, stuks)...">
+                    <input type="number" id="new-item-minimum" placeholder="Minimum waarde..." min="0">
+                    <button id="add-item" class="btn-primary">Item Toevoegen</button>
+                </div>
+                
+                <div class="items-list" id="admin-items-list">
+                    <!-- Admin items list will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
