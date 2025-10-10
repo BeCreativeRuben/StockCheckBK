@@ -171,40 +171,92 @@ function renderStockGrid() {
     const grid = document.getElementById('stock-grid');
     grid.innerHTML = '';
     
-    const filteredData = currentCategory === 'all' 
-        ? stockData 
-        : stockData.filter(item => item.category === currentCategory);
+    if (currentCategory === 'all') {
+        // Group all items by category
+        const categories = ['drank', 'eten'];
+        let hasItems = false;
+        
+        categories.forEach(category => {
+            const categoryItems = stockData.filter(item => item.category === category);
+            if (categoryItems.length > 0) {
+                hasItems = true;
+                const categoryGroup = createCategoryGroup(category, categoryItems);
+                grid.appendChild(categoryGroup);
+            }
+        });
+        
+        if (!hasItems) {
+            grid.innerHTML = '<div class="no-items">Geen items gevonden. Voeg items toe via het admin panel.</div>';
+        }
+    } else {
+        // Show only selected category
+        const filteredData = stockData.filter(item => item.category === currentCategory);
+        if (filteredData.length > 0) {
+            const categoryGroup = createCategoryGroup(currentCategory, filteredData);
+            grid.appendChild(categoryGroup);
+        } else {
+            const categoryInfo = getCategoryInfo(currentCategory);
+            grid.innerHTML = `<div class="no-items">Geen ${categoryInfo.name.toLowerCase()} items gevonden.</div>`;
+        }
+    }
     
-    filteredData.forEach(item => {
-        const itemElement = createStockItemElement(item);
-        grid.appendChild(itemElement);
-    });
+    // Add event listeners after rendering
+    addStockItemEventListeners();
 }
 
-function createStockItemElement(item) {
-    const div = document.createElement('div');
-    div.className = 'stock-item';
-    div.innerHTML = `
-        <div class="stock-item-header">
-            <div class="stock-item-name">${item.name}</div>
-            <div class="stock-item-category ${item.category}">${item.category.toUpperCase()}</div>
+function createCategoryGroup(category, items) {
+    const group = document.createElement('div');
+    group.className = 'category-group';
+    
+    const categoryInfo = getCategoryInfo(category);
+    
+    group.innerHTML = `
+        <div class="category-group-header">
+            <div class="category-group-icon">${categoryInfo.icon}</div>
+            <h3 class="category-group-title">${categoryInfo.name}</h3>
+            <div class="category-group-count">${items.length} items</div>
         </div>
-        <div class="stock-item-details">
-            <div class="stock-detail">
-                <label>Huidige Stock</label>
-                <input type="number" value="${item.current}" min="0" data-item-id="${item.id}" data-field="current">
-            </div>
-            <div class="stock-detail">
-                <label>Minimum</label>
-                <input type="number" value="${item.minimum}" min="0" data-item-id="${item.id}" data-field="minimum" ${!isAdmin ? 'readonly' : ''} ${!isAdmin ? 'style="background-color: #f8f9fa; cursor: not-allowed;"' : ''}>
-            </div>
+        <div class="category-items">
+            ${items.map(item => createStockItemHTML(item)).join('')}
         </div>
-        <div class="stock-item-unit">Eenheid: ${item.unit}</div>
     `;
     
-    // Add event listeners for input changes
-    const inputs = div.querySelectorAll('input');
-    inputs.forEach(input => {
+    return group;
+}
+
+function getCategoryInfo(category) {
+    const categories = {
+        'drank': { name: 'Drank', icon: '🥤' },
+        'eten': { name: 'Eten & Snacks', icon: '🍿' }
+    };
+    return categories[category] || { name: category, icon: '📦' };
+}
+
+function createStockItemHTML(item) {
+    return `
+        <div class="stock-item">
+            <div class="stock-item-header">
+                <div class="stock-item-name">${item.name}</div>
+                <div class="stock-item-category ${item.category}">${item.category.toUpperCase()}</div>
+            </div>
+            <div class="stock-item-details">
+                <div class="stock-detail">
+                    <label>Huidige Stock</label>
+                    <input type="number" value="${item.current}" min="0" data-item-id="${item.id}" data-field="current">
+                </div>
+                <div class="stock-detail">
+                    <label>Minimum</label>
+                    <input type="number" value="${item.minimum}" min="0" data-item-id="${item.id}" data-field="minimum" ${!isAdmin ? 'readonly' : ''} ${!isAdmin ? 'style="background-color: #f8f9fa; cursor: not-allowed;"' : ''}>
+                </div>
+            </div>
+            <div class="stock-item-unit">Eenheid: ${item.unit}</div>
+        </div>
+    `;
+}
+
+// Event listeners are now added after rendering the HTML
+function addStockItemEventListeners() {
+    document.querySelectorAll('.stock-item input').forEach(input => {
         input.addEventListener('change', function() {
             const itemId = parseInt(this.dataset.itemId);
             const field = this.dataset.field;
@@ -217,8 +269,6 @@ function createStockItemElement(item) {
             }
         });
     });
-    
-    return div;
 }
 
 function generateOrderList() {
