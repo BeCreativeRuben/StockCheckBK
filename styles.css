@@ -264,6 +264,8 @@ body {
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    min-width: 0;
 }
 
 .stock-item:hover {
@@ -315,12 +317,15 @@ body {
     background: #f8f9fa;
     border-radius: 8px;
     border: 1px solid #e9ecef;
+    overflow: hidden;
 }
 
 .stock-detail {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .stock-detail label {
@@ -337,6 +342,9 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     background: white;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .stock-detail input:focus {
