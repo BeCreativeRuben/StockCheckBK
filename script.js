@@ -139,6 +139,9 @@ function updateCategoryButtons() {
 }
 
 function loadStockData() {
+    // Clear old data and load new stock data
+    localStorage.removeItem('battlekartStockData');
+    
     // Load from localStorage or initialize with sample data
     const savedData = localStorage.getItem('battlekartStockData');
     if (savedData) {
