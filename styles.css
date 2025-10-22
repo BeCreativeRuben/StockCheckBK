@@ -364,6 +364,30 @@ body {
     margin-top: 10px;
 }
 
+.alcohol-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alcohol-label.alcoholic {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    color: white;
+    border: 2px solid #e74c3c;
+}
+
+.alcohol-label.non-alcoholic {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    color: white;
+    border: 2px solid #16a085;
+}
+
 /* Action Section */
 .action-section {
     display: flex;
@@ -492,7 +516,7 @@ body {
     background: #007bff;
     color: white;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
     gap: 20px;
     padding: 15px 20px;
     font-weight: 600;
@@ -505,7 +529,7 @@ body {
     background: white;
     border-bottom: 1px solid #e9ecef;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
     gap: 20px;
     padding: 15px 20px;
     align-items: center;
@@ -543,6 +567,13 @@ body {
 .order-item-category.eten {
     background: #fff3cd;
     color: #856404;
+}
+
+.order-item-alcohol {
+    font-size: 1rem;
+    color: #6c757d;
+    text-align: center;
+    font-weight: 500;
 }
 
 .order-item-current {

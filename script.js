@@ -144,18 +144,59 @@ function loadStockData() {
     if (savedData) {
         stockData = JSON.parse(savedData);
     } else {
-        // Initialize with sample data
+        // Initialize with updated stock data
         stockData = [
-            { id: 1, name: 'Coca Cola', category: 'drank', unit: 'bakken van 24', minimum: 5, current: 0 },
-            { id: 2, name: 'Fanta', category: 'drank', unit: 'bakken van 24', minimum: 3, current: 0 },
-            { id: 3, name: 'Water', category: 'drank', unit: 'pakken van 6', minimum: 8, current: 0 },
-            { id: 4, name: 'Chips Zout', category: 'eten', unit: 'zakken', minimum: 15, current: 0 },
-            { id: 5, name: 'Chips Paprika', category: 'eten', unit: 'zakken', minimum: 12, current: 0 },
-            { id: 6, name: 'M&M\'s', category: 'eten', unit: 'zakken', minimum: 10, current: 0 },
-            { id: 7, name: 'Mars', category: 'eten', unit: 'stuks', minimum: 20, current: 0 },
-            { id: 8, name: 'Snickers', category: 'eten', unit: 'stuks', minimum: 18, current: 0 },
-            { id: 9, name: 'Red Bull', category: 'drank', unit: 'stuks', minimum: 25, current: 0 },
-            { id: 10, name: 'Monster Energy', category: 'drank', unit: 'stuks', minimum: 15, current: 0 }
+            // Non-alcoholic drinks (frisdrank)
+            { id: 1, name: 'Cola zero', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x25cl)', minimum: 10, current: 0 },
+            { id: 2, name: 'Ice Tea', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x25cl)', minimum: 8, current: 0 },
+            { id: 3, name: 'Ice Tea green', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x25cl)', minimum: 5, current: 0 },
+            { id: 4, name: 'Schweppes', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x20cl)', minimum: 5, current: 0 },
+            { id: 5, name: 'Schweppes ginger', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x20cl)', minimum: 3, current: 0 },
+            { id: 6, name: 'Schweppes agrumes', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x20cl)', minimum: 3, current: 0 },
+            { id: 7, name: 'Schweppes spritz', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x20cl)', minimum: 3, current: 0 },
+            { id: 8, name: 'Sprite', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x25cl)', minimum: 5, current: 0 },
+            { id: 9, name: 'Fanta', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x25cl)', minimum: 5, current: 0 },
+            { id: 10, name: 'Water', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'krat/bak (24x25cl)', minimum: 5, current: 0 },
+            { id: 11, name: 'Looza ACE', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray/fles (20cl/1L)', minimum: 5, current: 0 },
+            { id: 12, name: 'Looza appel', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray/fles (20cl/1L)', minimum: 3, current: 0 },
+            { id: 13, name: 'Looza ananas', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray/fles (20cl/1L)', minimum: 3, current: 0 },
+            { id: 14, name: 'Looza orange', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray/fles (20cl/1L)', minimum: 3, current: 0 },
+            { id: 15, name: 'Looza appel-cherry', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray/fles (20cl/1L)', minimum: 3, current: 0 },
+            { id: 16, name: 'Looza tomaat', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray/fles (20cl/1L)', minimum: 3, current: 0 },
+            { id: 17, name: 'Fristi', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray (24x20cl of 6x20cl brik)', minimum: 3, current: 0 },
+            { id: 18, name: 'Cecemel', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray (24x20cl of 6x20cl brik)', minimum: 3, current: 0 },
+            { id: 19, name: 'Caprisun', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'doos (10-15 stuks)', minimum: 8, current: 0 },
+            { id: 20, name: 'RedBull', category: 'drank', subcategory: 'frisdrank', alcoholContent: 'non-alcoholic', unit: 'tray (24x25cl)', minimum: 6, current: 0 },
+            
+            // Alcoholic drinks (alcoholische drank)
+            { id: 21, name: 'Gasflessen', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'flessen', minimum: 3, current: 0 },
+            { id: 22, name: 'Caperol', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'flessen', minimum: 6, current: 0 },
+            { id: 23, name: 'Gin', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'flessen', minimum: 6, current: 0 },
+            { id: 24, name: 'Eristegy whisky', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'flessen', minimum: 6, current: 0 },
+            { id: 25, name: 'Jameson whisky', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'flessen', minimum: 6, current: 0 },
+            { id: 26, name: 'Bacardi', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'flessen', minimum: 6, current: 0 },
+            { id: 27, name: 'Wijn (wit)', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'dozen (6/12 flessen)', minimum: 2, current: 0 },
+            { id: 28, name: 'Wijn (rood)', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'dozen (6/12 flessen)', minimum: 2, current: 0 },
+            { id: 29, name: 'Wijn (rosé)', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'dozen (6/12 flessen)', minimum: 2, current: 0 },
+            { id: 30, name: 'Bubbels', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'dozen (6/12 flessen)', minimum: 2, current: 0 },
+            { id: 31, name: 'Omer', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 6, current: 0 },
+            { id: 32, name: 'Carlsberg', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x25cl/33cl)', minimum: 5, current: 0 },
+            { id: 33, name: 'Hoegaarden', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x25cl/33cl)', minimum: 5, current: 0 },
+            { id: 34, name: 'Stella', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x25cl/33cl)', minimum: 5, current: 0 },
+            { id: 35, name: 'Duvel', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 8, current: 0 },
+            { id: 36, name: 'Paix Dieu', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 5, current: 0 },
+            { id: 37, name: 'Chimay', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 5, current: 0 },
+            { id: 38, name: 'Orval', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 5, current: 0 },
+            { id: 39, name: 'Somersby', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'tray (24x33cl)', minimum: 3, current: 0 },
+            { id: 40, name: 'Desperados', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'tray (24x33cl)', minimum: 3, current: 0 },
+            { id: 41, name: 'Gouwen Duvelen', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 5, current: 0 },
+            { id: 42, name: 'Westmalle', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'krat/bak (24x33cl)', minimum: 5, current: 0 },
+            { id: 43, name: 'Corona', category: 'drank', subcategory: 'alcoholisch', alcoholContent: 'alcoholic', unit: 'tray (24x33cl)', minimum: 3, current: 0 },
+            
+            // Food items
+            { id: 44, name: 'Chips', category: 'eten', subcategory: 'snacks', alcoholContent: 'non-alcoholic', unit: 'dozen (multipack)', minimum: 3, current: 0 },
+            { id: 45, name: 'Worstjes', category: 'eten', subcategory: 'snacks', alcoholContent: 'non-alcoholic', unit: 'dozen', minimum: 2, current: 0 },
+            { id: 46, name: 'Aiki', category: 'eten', subcategory: 'snacks', alcoholContent: 'non-alcoholic', unit: 'dozen', minimum: 2, current: 0 }
         ];
         saveStockData();
     }
@@ -172,12 +213,25 @@ function renderStockGrid() {
     grid.innerHTML = '';
     
     if (currentCategory === 'all') {
-        // Group all items by category
+        // Group all items by category and sort drinks by alcohol content
         const categories = ['drank', 'eten'];
         let hasItems = false;
         
         categories.forEach(category => {
-            const categoryItems = stockData.filter(item => item.category === category);
+            let categoryItems = stockData.filter(item => item.category === category);
+            
+            // Sort drinks by alcohol content (non-alcoholic first, then alcoholic)
+            if (category === 'drank') {
+                categoryItems = categoryItems.sort((a, b) => {
+                    if (a.alcoholContent === 'non-alcoholic' && b.alcoholContent === 'alcoholic') return -1;
+                    if (a.alcoholContent === 'alcoholic' && b.alcoholContent === 'non-alcoholic') return 1;
+                    return a.name.localeCompare(b.name);
+                });
+            } else {
+                // Sort other categories alphabetically
+                categoryItems = categoryItems.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            
             if (categoryItems.length > 0) {
                 hasItems = true;
                 const categoryGroup = createCategoryGroup(category, categoryItems);
@@ -190,7 +244,20 @@ function renderStockGrid() {
         }
     } else {
         // Show only selected category
-        const filteredData = stockData.filter(item => item.category === currentCategory);
+        let filteredData = stockData.filter(item => item.category === currentCategory);
+        
+        // Sort drinks by alcohol content (non-alcoholic first, then alcoholic)
+        if (currentCategory === 'drank') {
+            filteredData = filteredData.sort((a, b) => {
+                if (a.alcoholContent === 'non-alcoholic' && b.alcoholContent === 'alcoholic') return -1;
+                if (a.alcoholContent === 'alcoholic' && b.alcoholContent === 'non-alcoholic') return 1;
+                return a.name.localeCompare(b.name);
+            });
+        } else {
+            // Sort other categories alphabetically
+            filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
+        }
+        
         if (filteredData.length > 0) {
             const categoryGroup = createCategoryGroup(currentCategory, filteredData);
             grid.appendChild(categoryGroup);
@@ -233,6 +300,10 @@ function getCategoryInfo(category) {
 }
 
 function createStockItemHTML(item) {
+    const alcoholLabel = item.alcoholContent === 'alcoholic' ? 
+        '<div class="alcohol-label alcoholic">🍺 ALCOHOLISCH</div>' : 
+        '<div class="alcohol-label non-alcoholic">🥤 ALCOHOLVRIJ</div>';
+    
     return `
         <div class="stock-item">
             <div class="stock-item-header">
@@ -250,6 +321,7 @@ function createStockItemHTML(item) {
                 </div>
             </div>
             <div class="stock-item-unit">Eenheid: ${item.unit}</div>
+            ${item.category === 'drank' ? alcoholLabel : ''}
         </div>
     `;
 }
@@ -297,16 +369,21 @@ function generateOrderList() {
             <div class="order-header">
                 <div>Item</div>
                 <div>Categorie</div>
+                <div>Alcohol</div>
                 <div>Huidig</div>
                 <div>Minimum</div>
                 <div>Te Bestellen</div>
             </div>
             ${orderItems.map(item => {
                 const needed = item.minimum - item.current;
+                const alcoholInfo = item.category === 'drank' ? 
+                    (item.alcoholContent === 'alcoholic' ? '🍺 Ja' : '🥤 Nee') : 
+                    '-';
                 return `
                     <div class="order-item">
                         <div class="order-item-name">${item.name}</div>
                         <div class="order-item-category ${item.category}">${item.category}</div>
+                        <div class="order-item-alcohol">${alcoholInfo}</div>
                         <div class="order-item-current">${item.current}</div>
                         <div class="order-item-minimum">${item.minimum}</div>
                         <div class="order-item-needed">${needed}</div>
@@ -335,12 +412,16 @@ function exportToExcel() {
     
     // Create CSV data
     const csvData = [
-        ['Item', 'Categorie', 'Huidige Stock', 'Minimum', 'Eenheid', 'Te Bestellen', 'Gebruiker', 'Datum'],
+        ['Item', 'Categorie', 'Alcohol', 'Huidige Stock', 'Minimum', 'Eenheid', 'Te Bestellen', 'Gebruiker', 'Datum'],
         ...stockData.map(item => {
             const needed = Math.max(0, item.minimum - item.current);
+            const alcoholInfo = item.category === 'drank' ? 
+                (item.alcoholContent === 'alcoholic' ? 'Ja' : 'Nee') : 
+                '-';
             return [
                 item.name,
                 item.category,
+                alcoholInfo,
                 item.current,
                 item.minimum,
                 item.unit,
@@ -503,19 +584,23 @@ function copyOrderList() {
     copyText += `\n`;
     
     // Add table header
-    copyText += `Item\t\t\tCategorie\tHuidig\tMinimum\tTe Bestellen\n`;
-    copyText += `─`.repeat(80) + `\n`;
+    copyText += `Item\t\t\tCategorie\tAlcohol\tHuidig\tMinimum\tTe Bestellen\n`;
+    copyText += `─`.repeat(90) + `\n`;
     
     // Add items
     orderItems.forEach(item => {
         const needed = item.minimum - item.current;
         const itemName = item.name.padEnd(20);
         const category = item.category.toUpperCase().padEnd(10);
+        const alcoholInfo = item.category === 'drank' ? 
+            (item.alcoholContent === 'alcoholic' ? 'Ja' : 'Nee') : 
+            '-';
+        const alcohol = alcoholInfo.padEnd(7);
         const current = item.current.toString().padStart(6);
         const minimum = item.minimum.toString().padStart(7);
         const neededStr = needed.toString().padStart(12);
         
-        copyText += `${itemName}\t${category}\t${current}\t${minimum}\t${neededStr}\n`;
+        copyText += `${itemName}\t${category}\t${alcohol}\t${current}\t${minimum}\t${neededStr}\n`;
     });
     
     // Add summary
